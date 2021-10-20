@@ -17,6 +17,20 @@ class ApiFeatures {
         this.query = this.query.find({...keyword});
         return this;
     }
+
+    filter(){
+        const queryFilter = {...this.queryString};
+        const removeFields = ["keyword", "page", "limit"];
+
+        removeFields.forEach(key => delete queryFilter[key]);
+        
+        // Filtering for price and rating
+        let queryString = JSON.stringify(queryFilter);
+        queryString = queryString.replace(/\b(gt|gte|lt|lte)\b/g, key => `$${key}`);
+       
+        this.query = this.query.find(JSON.parse(queryString));
+        return this;
+    }
 };
 
 module.exports = ApiFeatures;
