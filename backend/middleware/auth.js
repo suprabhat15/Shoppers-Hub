@@ -5,7 +5,10 @@ const User = require('../models/userModel');
 
 
 exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
-    const { token } = req.cookies;
+    // const { token } = req.cookies;
+    const token = req.cookies.token ||
+                  req.body.token || 
+                  req.header('Authorization').replace('Bearer ', "");
 
    if(!token){
        return next(new ErrorHandler('Please login to access the token.', 401));
