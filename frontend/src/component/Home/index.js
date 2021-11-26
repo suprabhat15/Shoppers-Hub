@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard.js";
 import MetaData from "../layout/MetaData";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
-import Loader from "../layout/Loader";
+import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 
 const Home = () => {
@@ -27,10 +27,10 @@ const Home = () => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title="ShoppesHub" />
+          <MetaData title="ShoppersHub" />
 
           <div className="banner">
-            <p>Welcome to ShoppesHub</p>
+            <p>Welcome to ShoppersHub</p>
             <h1>FIND AMAZING PRODUCTS BELOW</h1>
 
             <a href="#container">
