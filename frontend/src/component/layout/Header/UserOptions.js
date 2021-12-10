@@ -1,16 +1,20 @@
 import React, {Fragment} from 'react';
 import './index.css';
 import { SpeedDial, SpeedDialAction } from '@material-ui/lab';
+import Backdrop from '@material-ui/core/Backdrop';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonIcon from '@material-ui/icons/Person';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import { useHistory } from 'react-router-dom';
 import { useAlert } from 'react-alert';
+import { logout } from '../../../actions/userAction';
+import { useDispatch } from 'react-redux';
 
 const UserOptions = ({ user }) => {
     const [open, setOpen] = useState(false);
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const options = [
         {icon:<ListAltIcon/>, name:"Orders", func: orders},
@@ -42,6 +46,7 @@ const UserOptions = ({ user }) => {
 
     return (
         <Fragment>
+            <Backdrop open={open} style={{ zIndex: "10"}} />
             <SpeedDial
                 ariaLabel="SpeedDial tooltip example"
                 onClose={() => setOpen(false)}
@@ -49,6 +54,7 @@ const UserOptions = ({ user }) => {
                 open={open}
                 direction="down"
                 className="speedDial"
+                style={{ zIndex: "11"}}
                 icon={
                     <img
                         className="speedDialIcon"
@@ -59,7 +65,7 @@ const UserOptions = ({ user }) => {
             >
             {
                 options.map(item => (
-                    <SpeedDialAction icon={item.icon} tooltipTitle={item.name} onClick={item.func} />
+                    <SpeedDialAction key={item.name} icon={item.icon} tooltipTitle={item.name} onClick={item.func} />
                 ))
             }
             </SpeedDial>
