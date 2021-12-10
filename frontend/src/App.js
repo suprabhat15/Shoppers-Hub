@@ -5,6 +5,11 @@ import Footer from './component/layout/Footer';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WebFont from "webfontloader";
 import Home from './component/Home';
+import ProductDetails from './component/Product/ProductDetails';
+import Products from './component/Product/Products';
+import Search from './component/Product/Search';
+import LoginSignUp from './component/User/LoginSignUp';
+
 
 function App() {
   useEffect(() => {
@@ -18,9 +23,14 @@ function App() {
   return (
     <Router>
       <Header />
-      <Routes>
         <Route exact path="/" component={Home} />
-      </Routes>
+        <Route exact path="/product/:id" component={ProductDetails} />
+        <Route exact path="/products" component={Products} />
+        <Route path="/products/:keyword" component={Products} />
+        
+        <Route exact path="/search" component={Search} />
+        <Route exact path="/login" component={LoginSignUp} />
+
       <Footer />
     </Router>
   );
