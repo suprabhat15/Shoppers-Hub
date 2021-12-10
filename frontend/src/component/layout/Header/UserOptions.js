@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import './index.css';
 import { SpeedDial, SpeedDialAction } from '@material-ui/lab';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonIcon from '@material-ui/icons/Person';
@@ -47,6 +48,7 @@ const UserOptions = ({ user }) => {
                 onOpen={() => setOpen(true)}
                 open={open}
                 direction="down"
+                className="speedDial"
                 icon={
                     <img
                         className="speedDialIcon"
