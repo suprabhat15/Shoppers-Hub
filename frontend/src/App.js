@@ -2,7 +2,7 @@ import './App.css';
 import { useEffect } from 'react';
 import Header from './component/layout/Header';
 import Footer from './component/layout/Footer';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import WebFont from 'webfontloader';
 import Home from './component/Home';
 import ProductDetails from './component/Product/ProductDetails';
@@ -15,6 +15,7 @@ import UserOptions from './component/layout/Header/UserOptions';
 import {useSelector} from 'react-redux';
 import Profile from './component/User/Profile';
 import UpdateProfile from './component/User/UpdateProfile';
+import UpdatePassword from './component/User/UpdatePassword';
 import ProtectedRoute from './component/Route/ProtectedRoute';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       <Route path="/products/:keyword" component={Products} />
       <ProtectedRoute exact path="/account" component={Profile} />
       <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
+      <ProtectedRoute exact path="/password/update" component={UpdatePassword} />
       <Route exact path="/search" component={Search} />
       <Route exact path="/login" component={LoginSignUp} />
       <Footer />
