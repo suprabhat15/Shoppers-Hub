@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "./UpdateProfile.css";
+import "./index.css";
 import Loader from "../layout/Loader/Loader";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import FaceIcon from "@material-ui/icons/Face";
