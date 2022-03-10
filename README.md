@@ -11,3 +11,36 @@ This repository is about **responsive** e-commerce MERN stack web app that allow
 4. **Redux**
 5. **Axios for API Calls**
 6. **Cloudinary for Image Uploading**
+
+## Folder Structure
+```
+├── FrontEnd 
+      └── components
+             └── MainSection
+             └── MainSectionList
+             └── Sidebar
+             └── SidebarList
+      └── data
+             └── mainSection
+                    └── titles
+             └── sidebar
+                    └── titles
+      └── pages
+             └── 404 
+             └── landing
+├── BackEnd 
+      └── components
+             └── MainSection
+             └── MainSectionList
+             └── Sidebar
+             └── SidebarList
+       └── data
+             └── mainSection
+                    └── titles
+             └── sidebar
+                    └── titles
+       └── pages
+             └── 404 
+             └── landing
+                
+```
