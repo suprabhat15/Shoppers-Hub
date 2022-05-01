@@ -8,7 +8,7 @@ import {
   newReview,
 } from "../../actions/productAction";
 import ReviewCard from "./ReviewCard.js";
-import Loader from "../layout/Loader/Loader";
+import Loader from "../layout/Loader";
 import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
 import { addItemsToCart } from "../../actions/cartAction";
@@ -19,7 +19,7 @@ import {
   DialogTitle,
   Button,
 } from "@material-ui/core";
-import { Rating } from "@material-ui/lab";
+import { Rating } from "@mui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 
 const ProductDetails = ({ match }) => {
@@ -181,7 +181,6 @@ const ProductDetails = ({ match }) => {
                 value={rating}
                 size="large"
               />
-
               <textarea
                 className="submitDialogTextArea"
                 cols="30"

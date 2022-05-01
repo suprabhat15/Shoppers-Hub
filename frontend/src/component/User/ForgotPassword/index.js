@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "./index.css";
-import Loader from "../layout/Loader/Loader";
+import Loader from "../../layout/Loader";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, forgotPassword } from "../../actions/userAction";
+import { clearErrors, forgotPassword } from "../../../actions/userAction";
 import { useAlert } from "react-alert";
-import MetaData from "../layout/MetaData";
+import MetaData from "../../layout/MetaData";
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const ForgotPassword = () => {
                 onSubmit={forgotPasswordSubmit}
               >
                 <div className="forgotPasswordEmail">
-                  <MailOutlineIcon />
+                  {/* <MailOutlineIcon /> */}
                   <input
                     type="email"
                     placeholder="Email"

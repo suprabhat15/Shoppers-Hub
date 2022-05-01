@@ -27,7 +27,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
 
 // Get Single Order -- Only Admin can see anyone's orders.
 exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
-    const order = await Order.findById(req.params.id).populate("user", "name email");
+    const order = await Order.findById(req.params.id).populate("user", "name email");  // <-------
 
     if(!order){
         return next(new ErrorHandler("Order not found with this id", 404));
@@ -83,7 +83,7 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
         await updateStock(o.product, o.quantity);
     })
 
-    order.orderStatus = req.body.status;
+    order.orderStatus = req.body.status;  // <-------
 
     if(req.body.status === "Delivered") {
         order.deliveredAt = Date.now();

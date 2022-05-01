@@ -1,13 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "./index.css";
-import Loader from "../layout/Loader/Loader";
+import Loader from "../../layout/Loader";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import FaceIcon from "@material-ui/icons/Face";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, updateProfile, loadUser } from "../../actions/userAction";
+import { clearErrors, updateProfile, loadUser } from "../../../actions/userAction";
 import { useAlert } from "react-alert";
-import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
-import MetaData from "../layout/MetaData";
+import { UPDATE_PROFILE_RESET } from "../../../constants/userConstants";
+import MetaData from "../../layout/MetaData";
 
 const UpdateProfile = ({ history }) => {
   const dispatch = useDispatch();
@@ -96,7 +96,7 @@ const UpdateProfile = ({ history }) => {
                   />
                 </div>
                 <div className="updateProfileEmail">
-                  <MailOutlineIcon />
+                  {/* <MailOutlineIcon /> */}
                   <input
                     type="email"
                     placeholder="Email"

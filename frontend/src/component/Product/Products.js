@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import "./Products.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productAction";
-import Loader from "../layout/Loader/Loader";
+import Loader from "../layout/Loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";

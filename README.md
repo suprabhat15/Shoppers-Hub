@@ -29,7 +29,7 @@ This repository is about **responsive** e-commerce MERN stack web app that allow
                   └── User
                   └── layout
            └── constants
-                  └── productConstants.js
+                  └── @mui/labnts.js
                   └── userConstants.js
            └── images
            └── reducers
