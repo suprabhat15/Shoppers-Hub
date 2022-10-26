@@ -25,6 +25,7 @@
     "nodemailer": "^6.7.0",
     "nodemon": "^2.0.14",
     "react-material-ui-carousel": "^3.0.4",
+    "stripe": "^10.15.0",
     "validator": "^13.6.0"
   }
 }
