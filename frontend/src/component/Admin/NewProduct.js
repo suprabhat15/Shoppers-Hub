@@ -12,9 +12,11 @@ import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
+import { useNavigate } from "react-router-dom";
 
-const NewProduct = ({ history }) => {
+const NewProduct = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const alert = useAlert();
 
   const { loading, error, success } = useSelector((state) => state.newProduct);
@@ -45,10 +47,10 @@ const NewProduct = ({ history }) => {
 
     if (success) {
       alert.success("Product Created Successfully");
-      history.push("/admin/dashboard");
+      navigate("/admin/dashboard");
       dispatch({ type: NEW_PRODUCT_RESET });
     }
-  }, [dispatch, alert, error, history, success]);
+  }, [dispatch, alert, error, navigate, success]);
 
   const createProductSubmitHandler = (e) => {
     e.preventDefault();

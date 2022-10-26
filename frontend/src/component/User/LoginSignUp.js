@@ -1,21 +1,21 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../layout/Loader";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector,  } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 
-const LoginSignUp = ({ history, location }) => {
+const LoginSignUp = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
   const alert = useAlert();
 
-  const { error, loading, isAuthenticated } = useSelector(
-    (state) => state.user
-  );
+  const { error, loading, isAuthenticated } = useSelector((state) => state.user);
 
   const loginTab = useRef(null);
   const registerTab = useRef(null);
@@ -69,7 +69,7 @@ const LoginSignUp = ({ history, location }) => {
     }
   };
 
-  const redirect = location.search ? location.search.split("=")[1] : "/account";
+  const redirect = location?.search ? location?.search.split("=")[1] : "/account";
 
   useEffect(() => {
     if (error) {
@@ -78,9 +78,11 @@ const LoginSignUp = ({ history, location }) => {
     }
 
     if (isAuthenticated) {
-      history.push(redirect);
+      console.log("Logged in i guess", redirect)
+      navigate(redirect);
+      
     }
-  }, [dispatch, error, alert, history, isAuthenticated, redirect]);
+  }, [dispatch, error, alert, navigate, isAuthenticated, redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -126,7 +128,7 @@ const LoginSignUp = ({ history, location }) => {
                   />
                 </div>
                 <div className="loginPassword">
-                  <LockOpenIcon />
+                  {/* <LockOpenIcon /> */}
                   <input
                     type="password"
                     placeholder="Password"
@@ -145,7 +147,7 @@ const LoginSignUp = ({ history, location }) => {
                 onSubmit={registerSubmit}
               >
                 <div className="signUpName">
-                  <FaceIcon />
+                  {/* <FaceIcon /> */}
                   <input
                     type="text"
                     placeholder="Name"
@@ -167,7 +169,7 @@ const LoginSignUp = ({ history, location }) => {
                   />
                 </div>
                 <div className="signUpPassword">
-                  <LockOpenIcon />
+                  {/* <LockOpenIcon /> */}
                   <input
                     type="password"
                     placeholder="Password"

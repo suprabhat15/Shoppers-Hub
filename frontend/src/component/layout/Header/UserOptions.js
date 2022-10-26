@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux';
 
 const UserOptions = ({ user }) => {
     const [open, setOpen] = useState(false);
-    const history = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const options = [
@@ -27,15 +27,15 @@ const UserOptions = ({ user }) => {
     }
 
     function dashboard(){
-        history.push('/dashboard');
+        navigate('/dashboard');
     }
 
     function orders(){
-        history.push('/orders');
+        navigate('/orders');
     }
 
     function account(){
-        history.push('/account');
+        navigate('/account');
     }
 
     function logoutUser(){

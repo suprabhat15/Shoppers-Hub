@@ -61,9 +61,11 @@ function App() {
       },
     });
 
-    store.dispatch(loadUser());
+    if(isAuthenticated){
+      store.dispatch(loadUser());
+      getStripeApiKey();
+    }
 
-    getStripeApiKey();
   }, []);
 
   window.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -76,84 +78,84 @@ function App() {
 
       {stripeApiKey && (
         <Elements stripe={loadStripe(stripeApiKey)}>
-          <ProtectedRoute exact path="/process/payment" component={Payment} />
+          <ProtectedRoute exact path="/process/payment" element={Payment} />
         </Elements>
       )}
 
       <Routes>
-        <Route exact path="/" component={<Home />} />
+        <Route exact path="/" element={<Home />} />
 
-        <Route exact path="/product/:id" component={<ProductDetails />} />
+        <Route exact path="/product/:id" element={<ProductDetails />} />
 
-        <Route exact path="/products" component={<Products />} />
+        <Route exact path="/products" element={<Products />} />
         
-        <Route path="/products/:keyword" component={<Products />} />
+        <Route path="/products/:keyword" element={<Products />} />
 
-        <Route exact path="/search" component={<Search />} />
+        <Route exact path="/search" element={<Search />} />
 
-        <Route exact path="/contact" component={<Contact />} />
+        <Route exact path="/contact" element={<Contact />} />
 
-        <Route exact path="/about" component={<About />} />
-
-        <Route exact path='/account' element={<ProtectedRoute/>}>
-          <Route exact path='/account' element={<Profile/>}/>
-        </Route>
+        <Route exact path="/about" element={<About />} />
 
         <Route exact path='/account' element={<ProtectedRoute/>}>
           <Route exact path='/account' element={<Profile/>}/>
         </Route>
 
-        {/* <ProtectedRoute exact path="/account" component={<Profile />} /> */}
+        {/* <Route exact path='/account' element={<ProtectedRoute/>}>
+          <Route exact path='/account' element={<Profile/>}/>
+        </Route> */}
+
+        {/* <ProtectedRoute exact path="/account" element={<Profile />} /> */}
 
         <Route exact path="/me/update" element={<ProtectedRoute/>}>
           <Route exact path="/me/update" element={<UpdateProfile/>}/>
         </Route>
 
-        {/* <ProtectedRoute exact path="/me/update" component={<UpdateProfile />} /> */}
+        {/* <ProtectedRoute exact path="/me/update" element={<UpdateProfile />} /> */}
 
         <Route exact path="/password/update" element={<ProtectedRoute/>}>
           <Route exact path="/password/update" element={<UpdatePassword/>}/>
         </Route>
 
-        {/* <ProtectedRoute exact path="/password/update" component={<UpdatePassword />} /> */}
+        {/* <ProtectedRoute exact path="/password/update" element={<UpdatePassword />} /> */}
 
-        <Route exact path="/password/forgot" component={<ForgotPassword />} />
+        <Route exact path="/password/forgot" element={<ForgotPassword />} />
 
-        <Route exact path="/password/reset/:token" component={<ResetPassword />} />
+        <Route exact path="/password/reset/:token" element={<ResetPassword />} />
 
-        <Route exact path="/login" component={<LoginSignUp />} />
+        <Route exact path="/login" element={<LoginSignUp />} />
 
-        <Route exact path="/cart" component={<Cart />} />
+        <Route exact path="/cart" element={<Cart />} />
 
         <Route exact path="/shipping" element={<ProtectedRoute/>}>
           <Route exact path="/shipping" element={<Shipping/>}/>
         </Route>
 
-        {/* <ProtectedRoute exact path="/shipping" component={<Shipping />} /> */}
+        {/* <ProtectedRoute exact path="/shipping" element={<Shipping />} /> */}
 
         <Route exact path="/success" element={<ProtectedRoute/>}>
           <Route exact path="/success" element={<OrderSuccess/>}/>
         </Route>
 
-        {/* <ProtectedRoute exact path="/success" component={<OrderSuccess />} /> */}
+        {/* <ProtectedRoute exact path="/success" element={<OrderSuccess />} /> */}
 
         <Route exact path="/orders" element={<ProtectedRoute/>}>
           <Route exact path="/orders" element={<MyOrders/>}/>
         </Route>
 
-        {/* <ProtectedRoute exact path="/orders" component={<MyOrders />} /> */}
+        {/* <ProtectedRoute exact path="/orders" element={<MyOrders />} /> */}
 
         <Route exact path="/orders/confirm" element={<ProtectedRoute/>}>
           <Route exact path="/orders/confirm" element={<ConfirmOrder/>}/>
         </Route>
 
-        {/* <ProtectedRoute exact path="/order/confirm" component={<ConfirmOrder />} /> */}
+        {/* <ProtectedRoute exact path="/order/confirm" element={<ConfirmOrder />} /> */}
 
         <Route exact path="/orders/:id" element={<ProtectedRoute/>}>
           <Route exact path="/orders/:id" element={<OrderDetails/>}/>
         </Route>
 
-        {/* <ProtectedRoute exact path="/order/:id" component={<OrderDetails />} /> */}
+        {/* <ProtectedRoute exact path="/order/:id" element={<OrderDetails />} /> */}
 
         <Route exact path="/admin/dashboard" element={<ProtectedRoute isAdmin={true}/>}>
           <Route exact path="/admin/dashboard" element={<Dashboard/>}/>
@@ -163,14 +165,14 @@ function App() {
           isAdmin={true}
           exact
           path="/admin/dashboard"
-          component={<Dashboard />}
+          element={<Dashboard />}
         /> */}
 
         {/* <ProtectedRoute
           exact
           path="/admin/products"
           isAdmin={true}
-          component={<ProductList />}
+          element={<ProductList />}
         /> */}
 
         <Route exact path="/admin/products" element={<ProtectedRoute isAdmin={true}/>}>
@@ -181,7 +183,7 @@ function App() {
           exact
           path="/admin/product"
           isAdmin={true}
-          component={<NewProduct />}
+          element={<NewProduct />}
         /> */}
 
         <Route exact path="/admin/product" element={<ProtectedRoute isAdmin={true}/>}>
@@ -192,7 +194,7 @@ function App() {
           exact
           path="/admin/product/:id"
           isAdmin={true}
-          component={<UpdateProduct />}
+          element={<UpdateProduct />}
         /> */}
 
         <Route exact path="/admin/product/:id" element={<ProtectedRoute isAdmin={true}/>}>
@@ -203,7 +205,7 @@ function App() {
           exact
           path="/admin/orders"
           isAdmin={true}
-          component={<OrderList />}
+          element={<OrderList />}
         /> */}
 
         <Route exact path="/admin/orders" element={<ProtectedRoute isAdmin={true}/>}>
@@ -214,7 +216,7 @@ function App() {
           exact
           path="/admin/order/:id"
           isAdmin={true}
-          component={<ProcessOrder />}
+          element={<ProcessOrder />}
         /> */}
 
         <Route exact path="/admin/order/:id" element={<ProtectedRoute isAdmin={true}/>}>
@@ -225,7 +227,7 @@ function App() {
           exact
           path="/admin/users"
           isAdmin={true}
-          component={<UsersList />}
+          element={<UsersList />}
         /> */}
 
         <Route exact path="/admin/users" element={<ProtectedRoute isAdmin={true}/>}>
@@ -236,7 +238,7 @@ function App() {
           exact
           path="/admin/user/:id"
           isAdmin={true}
-          component={<UpdateUser />}
+          element={<UpdateUser />}
         /> */}
 
         <Route exact path="/admin/user/:id" element={<ProtectedRoute isAdmin={true}/>}>
@@ -247,7 +249,7 @@ function App() {
           exact
           path="/admin/reviews"
           isAdmin={true}
-          component={<ProductReviews />}
+          element={<ProductReviews />}
         /> */}
 
         <Route exact path="/admin/reviews" element={<ProtectedRoute isAdmin={true}/>}>
@@ -255,7 +257,7 @@ function App() {
         </Route>
 
         <Route
-          component={
+          element={
             window.location.pathname === "/process/payment" ? null : NotFound
           }
         />

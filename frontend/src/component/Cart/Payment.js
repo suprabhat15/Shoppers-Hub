@@ -18,11 +18,13 @@ import CreditCardIcon from "@material-ui/icons/CreditCard";
 import EventIcon from "@material-ui/icons/Event";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import { createOrder, clearErrors } from "../../actions/orderAction";
+import { useNavigate } from "react-router-dom";
 
-const Payment = ({ history }) => {
+const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const alert = useAlert();
   const stripe = useStripe();
   const elements = useElements();
@@ -96,7 +98,7 @@ const Payment = ({ history }) => {
 
           dispatch(createOrder(order));
 
-          history.push("/success");
+          navigate("/success");
         } else {
           alert.error("There's some issue while processing payment ");
         }

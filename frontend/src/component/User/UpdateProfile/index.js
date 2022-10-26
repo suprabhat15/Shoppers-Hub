@@ -8,9 +8,11 @@ import { clearErrors, updateProfile, loadUser } from "../../../actions/userActio
 import { useAlert } from "react-alert";
 import { UPDATE_PROFILE_RESET } from "../../../constants/userConstants";
 import MetaData from "../../layout/MetaData";
+import { useNavigate } from "react-router-dom";
 
-const UpdateProfile = ({ history }) => {
+const UpdateProfile = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const alert = useAlert();
 
   const { user } = useSelector((state) => state.user);
@@ -61,13 +63,13 @@ const UpdateProfile = ({ history }) => {
       alert.success("Profile Updated Successfully");
       dispatch(loadUser());
 
-      history.push("/account");
+      navigate("/account");
 
       dispatch({
         type: UPDATE_PROFILE_RESET,
       });
     }
-  }, [dispatch, error, alert, history, user, isUpdated]);
+  }, [dispatch, error, alert, navigate, user, isUpdated]);
   return (
     <Fragment>
       {loading ? (
